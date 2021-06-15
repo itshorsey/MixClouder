@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import MixContainer from "./components/MixContainer/";
 
-const Mix = ({ name, url }) => (
-  <div>
-    <h2>{name}</h2>
-    <p>{url}</p>
-  </div>
-);
-
 const App = () => {
-  const [mixes, setMixes] = useState([]);
-  const stations = [
+  const [stations, setStations] = useState([]);
+  const stationsList = [
     "balamii",
     "CashmereRadio",
     "dazed",
@@ -24,14 +17,18 @@ const App = () => {
         `https://api.mixcloud.com/${station}/cloudcasts/`
       );
       const { data } = await response.json();
-      return data;
+      setStations( prevState => ([...prevState, data]))
     };
+    
+    stationsList.map((station) => (
+      fetchData(station)
+    ))
 
-    // stations.map((station) => fetchData(station));
-    stations.forEach((station) => console.log(fetchData(station).));
   }, []);
-  console.log(`outer realm:`, mixes);
-  return <MixContainer mixes={mixes} />;
+
+  console.log(stations)
+
+  return <MixContainer stations={stations} />;
 };
 
 export default App;
