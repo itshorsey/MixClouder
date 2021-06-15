@@ -3,6 +3,7 @@ import MixContainer from "./components/MixContainer/";
 
 const App = () => {
   const [stations, setStations] = useState([]);
+  const [mixes, setMixes] = useState([]);
   const stationsList = [
     "balamii",
     "CashmereRadio",
@@ -17,7 +18,8 @@ const App = () => {
         `https://api.mixcloud.com/${station}/cloudcasts/`
       );
       const { data } = await response.json();
-      setStations( prevState => ([...prevState, data]))
+      console.log(data)
+      setStations( prevState => ([...prevState, data].flat()))
     };
     
     stationsList.map((station) => (
@@ -26,7 +28,7 @@ const App = () => {
 
   }, []);
 
-  console.log(stations)
+  console.log(`stations: `, stations.flat())
 
   return <MixContainer stations={stations} />;
 };

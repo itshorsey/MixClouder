@@ -1,10 +1,14 @@
 import React from "react";
-import Mix from "../Mix";
+import Tag from "../Tag";
 
 const MixContainer = ({ stations }) => (
-  <section>
+  <section className="flex flex-wrap justify-center">
     {stations.map((mixes) => (
-        <Mix mixes={mixes} />
+        <div className="outline w-20 pa3 mr2 mb2">
+          <img src={mixes.pictures.large} className="w-100"/>
+          <p>{mixes.name}</p>
+          <Tag tags={mixes.tags} />
+        </div>
     ))}
   </section>
 );
