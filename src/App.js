@@ -3,23 +3,21 @@ import MixContainer from "./components/MixContainer/";
 
 const App = () => {
   const [stations, setStations] = useState([]);
-  const [mixes, setMixes] = useState([]);
-  const stationsList = [
-    "balamii",
-    "CashmereRadio",
-    "dazed",
-    "hotelradioparis",
-    "ntsradio",
-  ];
 
-  useEffect((didUpdate) => {
+  useEffect(() => {
+    const stationsList = [
+      "balamii",
+      "CashmereRadio",
+      "dazed",
+      "hotelradioparis",
+    ];
+
     const fetchData = async (station) => {
       const response = await fetch(
         `https://api.mixcloud.com/${station}/cloudcasts/`
       );
       const { data } = await response.json();
-      console.log(data)
-      setStations( prevState => ([...prevState, data].flat()))
+      setStations((stations) => [...stations, data]);
     };
     
     stationsList.map((station) => (
@@ -29,8 +27,8 @@ const App = () => {
   }, []);
 
   console.log(`stations: `, stations.flat())
-
-  return <MixContainer stations={stations} />;
+  return <MixContainer stations={stations.flat()} />;
+  // return <h1>Hi</h1>
 };
 
 export default App;
