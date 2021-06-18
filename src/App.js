@@ -14,8 +14,20 @@ const App = () => {
       "CashmereRadio",
       "dazed",
       "hotelradioparis",
+      "ntsradio"
     ];
-    const nothanks = ["techno", "hardcore", "drone", "doom", "edm", "disco", "drill", "dance", "electronic"]
+    const nothanks = [
+      "techno",
+      "hardcore",
+      "drone",
+      "doom",
+      "edm",
+      "disco",
+      "drill",
+      "dance",
+      "electronic",
+      "droneday"
+    ]
 
     const fetchData = async (station) => {
       const response = await fetch(
@@ -29,8 +41,8 @@ const App = () => {
           if (tags.indexOf(nothanks[i]) !== -1) {
             return false
           }
-          return true
         }
+        return true
       })
       
       setStations((stations) => [...stations, data]);
