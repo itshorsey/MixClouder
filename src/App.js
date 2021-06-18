@@ -7,7 +7,7 @@ import DetailPanel from './components/DetailPanel'
 const App = () => {
   const [stations, setStations] = useState([]);
   const [selectedMix, setSelectedBook] = useState(null);
-  const [filteredMix, setFilteredMix] = useState(false)
+  const [filteredMix, setFilteredMix] = useState(false);
 
   useEffect(() => {
     const stationsList = [
@@ -16,36 +16,20 @@ const App = () => {
       "dazed",
       "hotelradioparis",
     ];
+    const nothanks = ["techno", "hardcore", "drone", "doom", "edm", "disco", "drill"]
 
     const fetchData = async (station) => {
       const response = await fetch(
         `https://api.mixcloud.com/${station}/cloudcasts/`
       );
       const { data } = await response.json();
-      // cleanMixes(data)
+      
       setStations((stations) => [...stations, data]);
     };
     
     stationsList.map((station) => (
       fetchData(station)
     ))
-
-    // const cleanMixes = (list) => {
-    //   const nothanks = ["techno", "hardcore", "drone", "doom", "edm", "disco", "drill"]
-    //   list.mixState = filteredMix
-    //   console.log(list.mixState)
-
-    //   list.map((mixItem) => {
-    //     mixItem.tags.map((tagName) => {
-    //       nothanks.map((nah) => {
-    //         if (tagName.name.toLowerCase() != nah) {
-    //           // setStations((stations) => [...stations, mixItem]);
-    //         }
-    //       })
-    //     })
-    //   })
-    // }
-
   }, []);
 
   const pickMix = (mix) => {
