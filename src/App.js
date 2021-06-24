@@ -12,7 +12,6 @@ const App = () => {
     const stationsList = [
       "balamii",
       "CashmereRadio",
-      "dazed",
       "thelotradio",
       "ntsradio",
       "CrackMagazine",
@@ -41,6 +40,17 @@ const App = () => {
       "uk techno",
       "disaster",
       "industrial",
+      "electro",
+      "hiphop",
+      "hip hop",
+      "hip-hop",
+      "grime",
+      "r&b",
+      "uk rap",
+      "trap",
+      "r'n'b",
+      "club",
+      "beauty",
     ];
 
     const fetchData = async (station) => {
